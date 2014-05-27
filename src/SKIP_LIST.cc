@@ -58,8 +58,10 @@ namespace SKIP_LIST {
       update[i-1] = n;
     }
     n = *(struct NODE **) (n+1);
-    if( n && h->compare(n->data, item) == 0 )
-      return;
+    if( n && h->compare(n->data, item) == 0 ) {
+    	free( update );
+    	return;
+    }
     else {
       int new_level = generate_level( h );
       if( new_level > h->current_level ) {
